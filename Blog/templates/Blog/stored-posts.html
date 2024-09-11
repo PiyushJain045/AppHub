@@ -1,0 +1,22 @@
+{% extends 'Blog/base.html' %}
+
+{% load static %}
+
+{% block page_title %} Stored posts Page {% endblock %}
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "Blog/home-page.css" %}">
+{% endblock %}
+
+{% block body %}
+    {% if posts_for_later %}
+        <ul>
+        {% for post in posts %}
+            <li><a href={% url 'page3' post.slug %}>
+                {{ post.title }}
+            </a></li>
+        {% endfor %}
+        </ul>    {% else %}
+        <h2>You have no posts for read later</h2>
+    {% endif %}
+
+{% endblock %}

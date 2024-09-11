@@ -1,0 +1,65 @@
+{% extends "Blog/base.html" %}
+{% load static %}
+
+{% block page_title %} post Page {% endblock %}
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "Blog/home-page.css" %}">
+{% endblock %}
+
+{% block body %}
+    <!-- Whole Blog -->
+    <h1>{{blog.title}}</h1>
+    <h4>
+        {% for tag in post_tags %}
+            {{tag}}
+        {% endfor %}
+    </h4>
+    <img src="{{ blog.image.url }}">
+    <p>{{blog.date|date:"d M Y"}}</p>
+    <p>{{ blog.content }}</p>
+
+    <!-- read later button -->
+     <div>
+        <form action="{% url 'page4' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" value="{{ blog.id }}" name="button_wali_value">
+            <button>
+                {% if read_later_on_button %}
+                    Read Later 
+                {% else %}
+                     Remove from Read Later
+                {% endif %}
+            </button>
+        </form>
+     </div>
+
+    <hr>
+    <!-- ALL COMMENTS -->
+     <ul>
+        {% for comment in comments %}
+            <li>
+                <div>
+                    <p>{{comment.user_name}}</p>
+                    <p>{{ comment.text }}</p>
+                </div>
+            </li>
+        {% endfor %}
+     </ul>
+
+    <!-- comment form -->
+    <section>
+        <h2>Your Comment</h2>
+        <form action="{% url "page3" blog.slug %}" method="POST">
+            {% csrf_token %}
+            {% for form_field in comment_form %}
+            <div class="form-control {% if form_field.errors %} invalid {% endif %}">
+                {{ form_field.label_tag }}
+                {{ form_field }}
+                {{ form_field.errors }}
+            </div>
+            {% endfor %} 
+           <button>Save Comment</button>
+        </form>
+    <section>
+
+{% endblock %}

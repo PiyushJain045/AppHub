@@ -1,0 +1,23 @@
+{% extends "Blog/base.html" %}
+{% load static %}
+
+{% block page_title %} Home Page {% endblock %}
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "Blog/home-page.css" %}">
+{% endblock %}
+
+{% block body %}
+    <div>
+        <section>
+            <img src="{% static "Blog/images/max.png" %}" alt="Piyush - The Author Of This Blog" />
+            <h2>PIYUSH'S BLOG</h2>
+        </section>
+    </div>
+
+    <div>
+        <h3> My latest Thought </h3>
+            {% for post in posts %}
+                {% include 'Blog/posts.html' %}
+            {% endfor %}
+    </div>
+{% endblock %}

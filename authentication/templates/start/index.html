@@ -1,0 +1,65 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Sign up / Login Form</title>
+  <link rel="stylesheet" href="{% static "gfg_/style.css" %}">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Slide Navbar</title>
+	<link rel="stylesheet" type="text/css" href="slide navbar style.css">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+	{% for message in messages %}
+    <div class="alert-danger error-message alert alert-{{ message.tags }} alert alert-primary alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{ message }}
+    </div>
+    {% endfor %}
+
+	<div class="main">  
+		<input type="checkbox" id="chk" aria-hidden="true">
+
+		<div class="signup">
+			<form action="/signup" method="post">
+				{% csrf_token %}
+				<label for="chk" aria-hidden="true">Sign up</label>
+		
+				<!-- Username Field -->
+				<input type="text" name="username" placeholder="User name" required="">
+				<!-- Email Field -->
+				<input type="email" name="email" placeholder="Email" required="">
+				<!-- number Field -->
+				<input type="text" name="number" placeholder="Phone Number" required="">
+				<!-- Password Fields -->
+				<input type="password" name="pass1" placeholder="Password" required="">
+				<input type="password" name="pass2" placeholder="Confirm Password" required="">
+		
+				<button>Sign up</button>
+			</form>
+		</div>
+		
+			<div class="login">
+				<form action="/signin" method="post">
+					{% csrf_token %}
+					<label for="chk" aria-hidden="true">Login</label>
+					<input type="text" name="username" placeholder="Username" required="">
+					<input type="password" name="pass1" placeholder="Password" required="">
+					<button>Login</button>
+				</form>
+			</div>
+	</div>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>

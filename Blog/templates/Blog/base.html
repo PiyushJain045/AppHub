@@ -1,0 +1,24 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block page_title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'Blog/base.css' %}" >
+    {% block css_files %} {% endblock %}
+</head>
+<body>
+    <header>
+        <nav>
+            <h3><a href="{% url 'page1' %}"> Piyush's Blog</a></h3>
+            <p><a href="{% url 'page4' %}"> Stored Posts</a></p>
+            <p><a href="{% url 'page2' %}"> All Posts</a></p>
+        </nav> 
+    </header>
+    
+    {% block body %}
+    {% endblock %}
+</body>
+</html>
