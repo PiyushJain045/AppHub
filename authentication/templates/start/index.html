@@ -48,7 +48,7 @@
 		</div>
 		
 			<div class="login">
-				<form action="/signin" method="post">
+				<form action="{% url 'signin' %}" method="post">
 					{% csrf_token %}
 					<label for="chk" aria-hidden="true">Login</label>
 					<input type="text" name="username" placeholder="Username" required="">
