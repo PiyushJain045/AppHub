@@ -158,7 +158,7 @@
                                 <!-- "Make Default" Button -->
                                 <form hx-post="{% url 'f_contact' %}" 
                                       hx-target="#container"
-                                      hx-swap="outerHTML"
+                                      hx-swap="innerHTML"
                                       method="POST">
                                 {% csrf_token %}
                                     <input type="hidden" name="address_id" value="{{ address.id }}">
