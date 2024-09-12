@@ -1,0 +1,32 @@
+{% for address in addresses %}
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ address.first_name }} {{ address.last_name }}</h5>
+                            <p class="card-text">
+                                {% if address.company_name %}
+                                    <strong>Company:</strong> {{ address.company_name }}<br>
+                                {% endif %}
+                                <strong>Address:</strong> {{ address.address }}<br>
+                                <strong>City/Town:</strong> {{ address.town_city }}<br>
+                                <strong>Country:</strong> {{ address.country }}<br>
+                                <strong>Postcode/ZIP:</strong> {{ address.postcode_zip }}<br>
+                                <strong>Mobile:</strong> {{ address.mobile }}<br>
+                            </p>
+                            {% if address.default %}
+                                <span class="badge bg-success">Default Address</span>
+                            {% else %}
+                                <!-- "Make Default" Button -->
+                                <form hx-post="{% url 'f_contact' %}" 
+                                      hx-target="#container"
+                                      hx-swap="outerHTML"
+                                      method="POST">
+                                {% csrf_token %}
+                                    <input type="hidden" name="address_id" value="{{ address.id }}">
+                                    <button type="submit" class="btn btn-outline-primary">Make Default</button>
+                                </form>
+                                {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}

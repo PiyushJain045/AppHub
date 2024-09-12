@@ -28,6 +28,9 @@
 
         <!-- Template Stylesheet -->
         <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+        <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+
     </head>
 
     <body>
@@ -131,9 +134,9 @@
     
             <!-- "Add Address" Button -->
             <a href="{% url 'f_contact' %}" class="btn btn-primary mb-4">Add Address</a>
-    
+        <div id="address-list">
             {% if addresses %}
-            <div>
+            <div id="container">
                 {% for address in addresses %}
                 <div class="col-md-6 mb-4">
                     <div class="card">
@@ -153,7 +156,10 @@
                                 <span class="badge bg-success">Default Address</span>
                             {% else %}
                                 <!-- "Make Default" Button -->
-                                <form action="{% url 'f_contact' %}" method="POST">
+                                <form hx-post="{% url 'f_contact' %}" 
+                                      hx-target="#container"
+                                      hx-swap="outerHTML"
+                                      method="POST">
                                 {% csrf_token %}
                                     <input type="hidden" name="address_id" value="{{ address.id }}">
                                     <button type="submit" class="btn btn-outline-primary">Make Default</button>

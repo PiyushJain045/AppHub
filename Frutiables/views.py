@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import TemplateView
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 
 #pdf
 from django.http import HttpResponse
@@ -111,9 +113,12 @@ class Contact(View):
          current_default.default = True
          current_default.save()
 
-         print("exit")
-
-         return redirect('f_contact')
+         print("Ok1")
+         addresses = Address.objects.filter(user=request.user)
+         print("Ok2")
+         return render(request, "partials/contact_p.html", {
+            "addresses": addresses
+        })
 
 class Shop(View):
     def get(self, request):
