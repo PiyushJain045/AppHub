@@ -18,9 +18,9 @@ STOCK_API = "VMOB9RDZL75NAJSL"
 NEWS_API = "648ed12df9444c98a8f7276b13dc3555"
 
 #twilio api details
-account_sid = "AC3a5ddae71bb95c520993d1456fb478be"
-auth_token = "cb270b4aae5712d31d73fcb76c01b09f"
-phone = "+12565488007"
+account_sid = "YOUR"
+auth_token = "YOUR"
+phone = "YOUR"
 
 class st_homepage(View):
     def get(self, request):
