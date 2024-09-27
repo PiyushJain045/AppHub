@@ -3,5 +3,5 @@ Currently AppHub links to 3 apps:
 <ul>
     <li> Blog </li>
     <li> Stock Tracker </li>
-    <li> Frutiables </li>
+    <li> Frutiables(e-commerce)</li>
 </ul>
